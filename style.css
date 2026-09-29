@@ -1502,3 +1502,267 @@ body {
     transition: none !important;
   }
 }
+
+/* =========================================================
+   FULL SCREEN CURTAIN TRANSITION
+========================================================= */
+
+.scene-transition {
+  position: fixed;
+  inset: 0;
+
+  z-index: 10000;
+
+  pointer-events: none;
+
+  display: flex;
+
+  opacity: 1;
+
+  transition:
+    opacity 0.5s ease;
+}
+
+/* 左右兩片大型窗簾 */
+
+.scene-curtain {
+  position: absolute;
+
+  top: 0;
+
+  width: 50%;
+  height: 100%;
+
+  z-index: 2;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #a58a69 0px,
+      #a58a69 10px,
+      #927653 10px,
+      #927653 20px,
+      #b09672 20px,
+      #b09672 28px
+    );
+
+  box-shadow:
+    inset 0 0 45px rgba(63, 38, 21, 0.28);
+
+  transition:
+    transform 2.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* 左邊窗簾 */
+
+.scene-curtain.left {
+  left: 0;
+
+  transform-origin: left center;
+
+  transform: translateX(0);
+}
+
+/* 右邊窗簾 */
+
+.scene-curtain.right {
+  right: 0;
+
+  transform-origin: right center;
+
+  transform: translateX(0);
+}
+
+/* 中間的光 */
+
+.scene-transition::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 0;
+
+  width: 0;
+  height: 100%;
+
+  transform: translateX(-50%);
+
+  z-index: 5;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 239, 196, 0.95),
+      rgba(255, 246, 215, 1),
+      rgba(255, 239, 196, 0.95),
+      transparent
+    );
+
+  box-shadow:
+    0 0 80px rgba(255, 218, 151, 0.85),
+    0 0 150px rgba(255, 210, 135, 0.55);
+
+  opacity: 0;
+
+  transition:
+    width 2.2s ease,
+    opacity 1.2s ease;
+}
+
+
+/* =========================================================
+   CURTAIN OPEN
+========================================================= */
+
+.scene-transition.opening .scene-curtain.left {
+  transform:
+    translateX(-100%);
+}
+
+.scene-transition.opening .scene-curtain.right {
+  transform:
+    translateX(100%);
+}
+
+.scene-transition.opening::after {
+  width: 45%;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   LIGHT BURST
+========================================================= */
+
+.scene-transition.light-burst::after {
+  width: 100%;
+
+  opacity: 0;
+
+  transition:
+    width 1s ease,
+    opacity 1s ease;
+}
+
+
+/* =========================================================
+   REMOVE TRANSITION
+========================================================= */
+
+.scene-transition.finished {
+  opacity: 0;
+}
+
+.scene-transition.finished .scene-curtain {
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ROOM DARK OPENING
+========================================================= */
+
+#room {
+  opacity: 0 !important;
+
+  filter:
+    brightness(0.25)
+    saturate(0.7);
+
+  transform: scale(1.04);
+
+  transition:
+    opacity 1.4s ease,
+    filter 2.5s ease,
+    transform 2.5s ease;
+}
+
+#room.scene-visible {
+  opacity: 1 !important;
+
+  filter:
+    brightness(0.52)
+    saturate(0.8);
+
+  transform: scale(1);
+}
+
+#room.scene-bright {
+  filter:
+    brightness(1)
+    saturate(0.95);
+}
+
+
+/* =========================================================
+   EXTRA SUNLIGHT AFTER CURTAIN OPENS
+========================================================= */
+
+#room.scene-bright .window-light {
+  opacity: 0.85;
+
+  animation:
+    sunlight-breathe 4s ease-in-out infinite alternate;
+}
+
+@keyframes sunlight-breathe {
+
+  from {
+    opacity: 0.65;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+
+}
+
+
+/* =========================================================
+   DUST PARTICLES
+========================================================= */
+
+.scene-dust {
+  position: fixed;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 239, 201, 0.7);
+
+  z-index: 7000;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  animation:
+    dust-float 5s ease-in-out infinite;
+}
+
+@keyframes dust-float {
+
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  20% {
+    opacity: 0.65;
+  }
+
+  70% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+}
