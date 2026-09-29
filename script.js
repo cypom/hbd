@@ -36,7 +36,7 @@ giftsFound: 0
 // 第一版暫時使用這個測試密碼。
 // 之後可以換成你朋友真正的密碼。
 
-const PASSWORD = "0324";
+const PASSWORD = "0530";
 
 function enterRoom() {
 
