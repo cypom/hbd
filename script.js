@@ -39,62 +39,38 @@ giftsFound: 0
 const PASSWORD = "0530";
 
 function enterRoom() {
+  const enteredPassword = passwordInput.value.trim();
 
-const enteredPassword = passwordInput.value.trim();
+  console.log("輸入的密碼：", enteredPassword);
 
-if (enteredPassword === PASSWORD) {
+  if (enteredPassword === PASSWORD) {
+    gameState.authenticated = true;
 
-```
-gameState.authenticated = true;
+    loginMessage.textContent = "ACCESS GRANTED";
+    loginMessage.style.color = "#b9c6ad";
 
-loginMessage.textContent = "ACCESS GRANTED";
+    setTimeout(() => {
+      loginScreen.classList.add("hidden");
+      room.classList.remove("hidden");
 
-loginMessage.style.color = "#b9c6ad";
+      showHint("房間很安靜。");
+    }, 900);
 
-setTimeout(() => {
+  } else {
+    loginMessage.textContent = "ACCESS DENIED";
+    loginMessage.style.color = "#a98b82";
 
-  loginScreen.classList.add("hidden");
-
-  room.classList.remove("hidden");
-
-  showHint("房間很安靜。");
-
-}, 900);
-```
-
-} else {
-
-```
-loginMessage.textContent = "ACCESS DENIED";
-
-loginMessage.style.color = "#a98b82";
-
-passwordInput.value = "";
-```
-
+    passwordInput.value = "";
+  }
 }
 
-}
+enterButton.addEventListener("click", enterRoom);
 
-enterButton.addEventListener(
-"click",
-enterRoom
-);
-
-passwordInput.addEventListener(
-"keydown",
-(event) => {
-
-```
-if (event.key === "Enter") {
-
-  enterRoom();
-
-}
-```
-
-}
-);
+passwordInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    enterRoom();
+  }
+});
 
 // ========================================
 // 房間提示
