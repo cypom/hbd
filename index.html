@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Birthday Adventure</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       身分確認畫面
+  ========================== -->
+
+  <section id="login-screen" class="screen">
+
+```
+<div class="login-box">
+
+  <p class="system-text">身分確認中，檢測</p>
+
+  <div class="login-line"></div>
+
+  <label for="password">PASSWORD</label>
+
+  <input
+    id="password"
+    type="password"
+    autocomplete="off"
+    placeholder="輸入密碼"
+  >
+
+  <button id="enter-button">
+    ENTER
+  </button>
+
+  <p id="login-message"></p>
+
+</div>
+```
+
+  </section>
+
+  <!-- =========================
+       房間
+  ========================== -->
+
+  <main id="room" class="room hidden">
+
+```
+<!-- 背景光 -->
+<div class="window-light"></div>
+
+<!-- 窗戶 -->
+<div id="window" class="object window-object">
+
+  <div class="curtain curtain-left"></div>
+  <div class="curtain curtain-right"></div>
+
+  <div class="window-frame">
+
+    <div class="window-sky"></div>
+
+    <div class="window-cross vertical"></div>
+    <div class="window-cross horizontal"></div>
+
+  </div>
+
+</div>
+
+
+<!-- 書桌 -->
+<div class="object desk">
+
+  <div class="desk-top"></div>
+
+  <!-- 白色日記本 -->
+  <div id="diary" class="small-object diary">
+
+    <div class="diary-cover"></div>
+
+    <span>DIARY</span>
+
+  </div>
+
+  <div class="desk-leg left"></div>
+  <div class="desk-leg right"></div>
+
+</div>
+
+
+<!-- 床 -->
+<div class="object bed">
+
+  <div class="bed-frame"></div>
+
+  <div class="mattress"></div>
+
+  <div class="blanket">
+
+    <div class="blanket-pattern"></div>
+
+  </div>
+
+  <!-- 小狗玩偶 -->
+  <div id="dog-toy" class="dog-toy">
+
+    <div class="dog-ear left"></div>
+    <div class="dog-ear right"></div>
+
+    <div class="dog-face">
+
+      <div class="dog-eye left"></div>
+      <div class="dog-eye right"></div>
+
+      <div class="dog-nose"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- 衣櫃 -->
+<div id="wardrobe" class="object wardrobe">
+
+  <div class="wardrobe-door left-door"></div>
+  <div class="wardrobe-door right-door"></div>
+
+  <div class="shirt">
+
+    <div class="shirt-body"></div>
+
+    <div class="shirt-sleeve left"></div>
+    <div class="shirt-sleeve right"></div>
+
+  </div>
+
+</div>
+
+
+<!-- 相框 -->
+<div id="photo-frame" class="object photo-frame">
+
+  <div class="frame-border">
+
+    <div class="photo-placeholder">
+      MEMORY
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- 時鐘 -->
+<div id="clock" class="object clock">
+
+  <div class="clock-face">
+
+    <div class="clock-hand hour"></div>
+    <div class="clock-hand minute"></div>
+
+    <div class="clock-center"></div>
+
+  </div>
+
+</div>
+
+
+<!-- 音響 -->
+<div id="speaker" class="object speaker">
+
+  <div class="speaker-top"></div>
+
+  <div class="speaker-body">
+
+    <div class="speaker-circle"></div>
+    <div class="speaker-circle small"></div>
+
+  </div>
+
+</div>
+
+
+<!-- 抽屜 -->
+<div id="drawer" class="object drawer">
+
+  <div class="drawer-handle"></div>
+
+</div>
+
+
+<!-- 地毯 -->
+<div class="rug"></div>
+
+
+<!-- 房間提示 -->
+<div id="room-hint" class="room-hint">
+  房間很安靜。
+</div>
+
+
+<!-- 小型遊戲 UI -->
+<div class="game-ui">
+
+  <span id="progress">
+    0 / 5
+  </span>
+
+</div>
+```
+
+  </main>
+
+  <!-- =========================
+       日記視窗
+  ========================== -->
+
+  <div id="diary-modal" class="modal hidden">
+
+```
+<div class="modal-content diary-content">
+
+  <button class="close-button" id="close-diary">
+    ×
+  </button>
+
+  <div class="paper">
+
+    <p class="paper-title">
+      WHITE DIARY
+    </p>
+
+    <p>
+      [DIARY CONTENT]
+    </p>
+
+    <p class="paper-note">
+      有些故事，要從房間裡慢慢找。
+    </p>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
