@@ -1,6 +1,8 @@
-/* =========================================
-   GLOBAL
-   ========================================= */
+/* =====================================================
+   BIRTHDAY ADVENTURE
+   Cozy Storybook Bedroom
+   CSS Illustrated Room
+===================================================== */
 
 * {
   box-sizing: border-box;
@@ -8,10 +10,10 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
 
 body {
@@ -21,20 +23,18 @@ body {
     "Microsoft JhengHei",
     sans-serif;
 
-  background: #171512;
-  color: #eee8dc;
-
-  overflow: hidden;
+  background: #d8cbb7;
+  color: #55483a;
 }
 
-/* =========================================
-   LOGIN SCREEN
-   ========================================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 #login-screen {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 9999;
 
   display: flex;
   justify-content: center;
@@ -43,10 +43,10 @@ body {
   background:
     radial-gradient(
       circle at center,
-      rgba(91, 76, 58, 0.18),
-      transparent 42%
-    ),
-    #171512;
+      #332c24 0%,
+      #211d18 48%,
+      #15130f 100%
+    );
 
   transition:
     opacity 1s ease,
@@ -59,112 +59,126 @@ body {
   pointer-events: none;
 }
 
-.login-content {
-  width: min(420px, 85vw);
-
+.login-box {
+  width: min(380px, 82vw);
   text-align: center;
-
-  animation: loginAppear 1.4s ease forwards;
 }
 
-.login-content h1 {
-  margin: 0 0 28px;
+.system-text {
+  margin: 0 0 22px;
 
-  font-size: clamp(18px, 2vw, 24px);
+  color: #e7ddce;
+
+  font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.22em;
 
-  color: #e9e1d4;
+  letter-spacing: 0.28em;
+}
+
+.login-line {
+  width: 100%;
+  height: 1px;
+
+  margin-bottom: 28px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(224, 211, 190, 0.35),
+      transparent
+    );
+}
+
+.login-box label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: rgba(236, 226, 211, 0.55);
+
+  font-size: 10px;
+  letter-spacing: 0.3em;
 }
 
 #password {
   width: 100%;
 
-  padding: 14px 18px;
+  padding: 13px 16px;
 
-  border: 1px solid rgba(222, 211, 194, 0.28);
-  border-radius: 4px;
+  border: 1px solid rgba(231, 218, 196, 0.25);
+  border-radius: 3px;
 
   outline: none;
 
   background: rgba(255, 255, 255, 0.035);
 
-  color: #eee8dc;
-
-  font-size: 15px;
-  letter-spacing: 0.12em;
+  color: #f2e9dc;
 
   text-align: center;
 
-  transition:
-    border-color 0.4s ease,
-    background 0.4s ease,
-    box-shadow 0.4s ease;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+
+  transition: 0.4s ease;
 }
 
 #password::placeholder {
-  color: rgba(238, 232, 220, 0.35);
+  color: rgba(239, 229, 214, 0.28);
 }
 
 #password:focus {
-  border-color: rgba(224, 207, 177, 0.65);
+  border-color: rgba(232, 213, 180, 0.65);
 
-  background: rgba(255, 255, 255, 0.055);
+  background: rgba(255, 255, 255, 0.06);
 
   box-shadow:
-    0 0 0 3px rgba(224, 207, 177, 0.05),
-    0 0 28px rgba(224, 207, 177, 0.06);
+    0 0 25px rgba(220, 190, 145, 0.06);
 }
 
 #enter-button {
   margin-top: 18px;
 
-  padding: 10px 26px;
+  padding: 10px 25px;
 
-  border: 1px solid rgba(222, 211, 194, 0.3);
+  border: 1px solid rgba(231, 218, 196, 0.3);
   border-radius: 3px;
 
-  background: rgba(255, 255, 255, 0.025);
+  background: transparent;
 
-  color: #e9e1d4;
+  color: #e9dfd0;
 
-  font-size: 12px;
-  letter-spacing: 0.16em;
+  font-size: 10px;
+  letter-spacing: 0.25em;
 
   cursor: pointer;
 
   transition:
-    background 0.35s ease,
-    border-color 0.35s ease,
-    transform 0.35s ease;
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 #enter-button:hover {
-  background: rgba(224, 207, 177, 0.09);
+  background: rgba(235, 218, 188, 0.08);
 
-  border-color: rgba(224, 207, 177, 0.6);
+  border-color: rgba(235, 218, 188, 0.6);
 
   transform: translateY(-1px);
-}
-
-#enter-button:active {
-  transform: translateY(0);
 }
 
 #login-message {
   min-height: 20px;
 
-  margin-top: 18px;
+  margin-top: 16px;
 
-  font-size: 12px;
-  letter-spacing: 0.16em;
-
-  transition: color 0.4s ease;
+  font-size: 11px;
+  letter-spacing: 0.2em;
 }
 
-/* =========================================
+/* =====================================================
    ROOM
-   ========================================= */
+===================================================== */
 
 #room {
   position: relative;
@@ -172,218 +186,1021 @@ body {
   width: 100vw;
   height: 100vh;
 
-  min-height: 600px;
-
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      ellipse at 65% 30%,
-      rgba(214, 184, 139, 0.08),
-      transparent 42%
-    ),
-    linear-gradient(
-      135deg,
-      #b9ad9b 0%,
-      #d1c5b2 50%,
-      #a99c89 100%
-    );
-
-  filter: brightness(0.62) saturate(0.78);
+  background: #d2c1a8;
 
   transition:
-    filter 1.8s cubic-bezier(0.22, 1, 0.36, 1),
-    background 1.8s ease;
+    filter 1.8s ease;
 }
 
-#room.window-open {
-  filter: brightness(1) saturate(0.92);
-
-  background:
-    radial-gradient(
-      ellipse at 65% 25%,
-      rgba(255, 226, 174, 0.3),
-      transparent 45%
-    ),
-    linear-gradient(
-      135deg,
-      #d8cbb7 0%,
-      #eee5d5 52%,
-      #c9b9a2 100%
-    );
-}
-
-/* =========================================
-   ROOM ATMOSPHERE
-   ========================================= */
+/* =====================================================
+   WALL
+===================================================== */
 
 #room::before {
   content: "";
 
   position: absolute;
-  inset: 0;
 
-  pointer-events: none;
+  left: 0;
+  top: 0;
 
-  z-index: 1;
+  width: 100%;
+  height: 72%;
+
+  z-index: 0;
 
   background:
-    radial-gradient(
-      ellipse at center,
-      transparent 35%,
-      rgba(35, 28, 21, 0.25) 100%
+    repeating-linear-gradient(
+      90deg,
+      rgba(102, 77, 50, 0.035) 0,
+      rgba(102, 77, 50, 0.035) 2px,
+      transparent 2px,
+      transparent 90px
+    ),
+    linear-gradient(
+      180deg,
+      #d9cbb6 0%,
+      #d3c2aa 100%
     );
 
-  transition: opacity 1.8s ease;
+  box-shadow:
+    inset 0 -12px 20px rgba(82, 60, 39, 0.08);
 }
 
-#room.window-open::before {
-  opacity: 0.45;
-}
+/* =====================================================
+   FLOOR
+===================================================== */
 
 #room::after {
   content: "";
 
   position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 30%;
+
+  z-index: 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(91, 66, 42, 0.06) 0,
+      rgba(91, 66, 42, 0.06) 2px,
+      transparent 2px,
+      transparent 115px
+    ),
+    linear-gradient(
+      180deg,
+      #bca98d 0%,
+      #a99273 100%
+    );
+
+  box-shadow:
+    inset 0 12px 18px rgba(65, 45, 29, 0.08);
+}
+
+/* =====================================================
+   WINDOW
+===================================================== */
+
+.window-object {
+  position: absolute;
+
+  left: 55%;
+  top: 7%;
+
+  width: 28%;
+  height: 42%;
+
+  z-index: 4;
+}
+
+.window-frame {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 74%;
+  height: 78%;
+
+  transform: translate(-50%, -50%);
+
+  background: #e7dbc7;
+
+  border: 12px solid #8c7256;
+
+  box-shadow:
+    0 18px 35px rgba(70, 48, 30, 0.22),
+    inset 0 0 0 4px rgba(255, 246, 227, 0.35);
+}
+
+.window-sky {
+  position: absolute;
   inset: 0;
 
-  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      #a9c5d0 0%,
+      #dce1d0 58%,
+      #a6b08f 100%
+    );
+}
 
-  z-index: 2;
+.window-sky::before {
+  content: "";
+
+  position: absolute;
+
+  left: 8%;
+  top: 28%;
+
+  width: 55%;
+  height: 18%;
+
+  border-radius: 50%;
+
+  background: rgba(255, 250, 233, 0.45);
+
+  filter: blur(12px);
+}
+
+.window-cross.vertical {
+  position: absolute;
+
+  left: 50%;
+  top: 0;
+
+  width: 5px;
+  height: 100%;
+
+  transform: translateX(-50%);
+
+  background: #8c7256;
+}
+
+.window-cross.horizontal {
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 100%;
+  height: 5px;
+
+  transform: translateY(-50%);
+
+  background: #8c7256;
+}
+
+/* =====================================================
+   CURTAINS
+===================================================== */
+
+.curtain {
+  position: absolute;
+
+  top: 2%;
+  height: 91%;
+
+  z-index: 8;
+
+  width: 29%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(104, 79, 54, 0.08) 0,
+      rgba(104, 79, 54, 0.08) 5px,
+      transparent 5px,
+      transparent 15px
+    ),
+    #b7a68e;
+
+  box-shadow:
+    0 12px 24px rgba(63, 45, 29, 0.16);
+
+  transition:
+    transform 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.curtain-left {
+  left: 0;
+
+  transform-origin: top left;
+}
+
+.curtain-right {
+  right: 0;
+
+  transform-origin: top right;
+}
+
+#room.window-open .curtain-left {
+  transform: translateX(-82%);
+}
+
+#room.window-open .curtain-right {
+  transform: translateX(82%);
+}
+
+/* =====================================================
+   WINDOW LIGHT
+===================================================== */
+
+.window-light {
+  position: absolute;
+
+  left: 52%;
+  top: 10%;
+
+  width: 35%;
+  height: 50%;
+
+  z-index: 1;
 
   background:
     radial-gradient(
-      ellipse at 68% 30%,
-      rgba(255, 219, 166, 0.14),
-      transparent 36%
+      ellipse,
+      rgba(255, 221, 163, 0.32),
+      transparent 70%
     );
 
   opacity: 0;
 
-  transition: opacity 2s ease;
+  filter: blur(12px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 2s ease;
 }
 
-#room.window-open::after {
+#room.window-open .window-light {
   opacity: 1;
 }
 
-/* =========================================
-   ROOM OBJECTS
-   ========================================= */
+/* =====================================================
+   COMMON OBJECT
+===================================================== */
 
-.room-object {
-  position: absolute;
-
-  z-index: 10;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
+.object,
+.small-object,
+.dog-toy {
   cursor: pointer;
 
   transition:
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.45s ease,
-    opacity 0.45s ease;
-}
-
-.room-object:hover {
-  filter:
-    brightness(1.08)
-    drop-shadow(0 0 12px rgba(255, 224, 177, 0.15));
-
-  transform: translateY(-2px);
-}
-
-.room-object:active {
-  transform: translateY(0);
-}
-
-/* keyboard accessibility */
-
-.room-object:focus-visible {
-  outline: 1px solid rgba(245, 225, 193, 0.55);
-
-  outline-offset: 5px;
-}
-
-/* =========================================
-   WINDOW
-   ========================================= */
-
-#window {
-  z-index: 12;
-}
-
-#window:hover {
-  filter:
-    brightness(1.1)
-    drop-shadow(0 0 22px rgba(255, 220, 168, 0.2));
-}
-
-/* =========================================
-   DIARY
-   ========================================= */
-
-#diary {
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.4s ease;
 }
 
-#diary:hover {
-  transform:
-    translateY(-3px)
-    rotate(-0.5deg);
-
+.object:hover,
+.small-object:hover,
+.dog-toy:hover {
   filter:
-    brightness(1.08)
-    drop-shadow(0 8px 14px rgba(54, 42, 29, 0.16));
+    brightness(1.07)
+    drop-shadow(
+      0 7px 10px rgba(63, 45, 29, 0.12)
+    );
 }
 
-/* =========================================
+/* =====================================================
+   DESK
+===================================================== */
+
+.desk {
+  position: absolute;
+
+  left: 7%;
+  bottom: 24%;
+
+  width: 26%;
+  height: 27%;
+
+  z-index: 6;
+}
+
+.desk-top {
+  position: absolute;
+
+  left: 0;
+  top: 8%;
+
+  width: 100%;
+  height: 18%;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #b99167,
+      #9c744d
+    );
+
+  box-shadow:
+    0 12px 15px rgba(68, 46, 28, 0.18);
+}
+
+.desk-leg {
+  position: absolute;
+
+  top: 24%;
+
+  width: 9%;
+  height: 76%;
+
+  border-radius: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8b6545,
+      #a77c52
+    );
+}
+
+.desk-leg.left {
+  left: 9%;
+}
+
+.desk-leg.right {
+  right: 9%;
+}
+
+/* =====================================================
+   DIARY
+===================================================== */
+
+.diary {
+  position: absolute;
+
+  left: 37%;
+  top: -2%;
+
+  width: 27%;
+  height: 75%;
+
+  transform: rotate(-3deg);
+
+  z-index: 20;
+}
+
+.diary-cover {
+  position: absolute;
+  inset: 0;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5f1e8,
+      #ded7c9
+    );
+
+  box-shadow:
+    2px 5px 9px rgba(58, 42, 28, 0.2);
+}
+
+.diary span {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: #817565;
+
+  font-size: 7px;
+  letter-spacing: 0.2em;
+}
+
+/* =====================================================
+   BED
+===================================================== */
+
+.bed {
+  position: absolute;
+
+  left: 31%;
+  bottom: 13%;
+
+  width: 42%;
+  height: 38%;
+
+  z-index: 7;
+}
+
+.bed-frame {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 22%;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #936b49,
+      #755239
+    );
+
+  box-shadow:
+    0 15px 22px rgba(63, 42, 26, 0.2);
+}
+
+.mattress {
+  position: absolute;
+
+  left: 2%;
+  top: 22%;
+
+  width: 96%;
+  height: 48%;
+
+  border-radius: 14px 14px 7px 7px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f4eee2,
+      #ded4c3
+    );
+
+  box-shadow:
+    0 8px 15px rgba(74, 52, 34, 0.13);
+}
+
+.blanket {
+  position: absolute;
+
+  left: 30%;
+  top: 27%;
+
+  width: 67%;
+  height: 44%;
+
+  border-radius: 0 13px 9px 9px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #b5a58f,
+      #988873
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.blanket-pattern {
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.08) 0,
+      rgba(255,255,255,0.08) 2px,
+      transparent 2px,
+      transparent 14px
+    );
+}
+
+/* =====================================================
+   DOG TOY
+===================================================== */
+
+.dog-toy {
+  position: absolute;
+
+  left: 16%;
+  top: 34%;
+
+  width: 15%;
+  height: 35%;
+
+  z-index: 30;
+}
+
+.dog-face {
+  position: absolute;
+
+  left: 10%;
+  top: 20%;
+
+  width: 80%;
+  height: 65%;
+
+  border-radius: 50%;
+
+  background: #c59b6f;
+
+  box-shadow:
+    inset -5px -7px 0 rgba(105, 72, 45, 0.08);
+}
+
+.dog-ear {
+  position: absolute;
+
+  top: 18%;
+
+  width: 30%;
+  height: 43%;
+
+  border-radius: 50% 50% 40% 40%;
+
+  background: #a9784e;
+
+  z-index: -1;
+}
+
+.dog-ear.left {
+  left: 0;
+
+  transform: rotate(-25deg);
+}
+
+.dog-ear.right {
+  right: 0;
+
+  transform: rotate(25deg);
+}
+
+.dog-eye {
+  position: absolute;
+
+  top: 39%;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #44352a;
+}
+
+.dog-eye.left {
+  left: 28%;
+}
+
+.dog-eye.right {
+  right: 28%;
+}
+
+.dog-nose {
+  position: absolute;
+
+  left: 50%;
+  top: 53%;
+
+  width: 9px;
+  height: 7px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: #574036;
+}
+
+/* =====================================================
+   WARDROBE
+===================================================== */
+
+.wardrobe {
+  position: absolute;
+
+  right: 6%;
+  bottom: 24%;
+
+  width: 21%;
+  height: 53%;
+
+  z-index: 5;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6c4d,
+      #a8815c 50%,
+      #8a6749
+    );
+
+  border-radius: 5px 5px 2px 2px;
+
+  box-shadow:
+    0 18px 28px rgba(58, 40, 25, 0.22);
+}
+
+.wardrobe-door {
+  position: absolute;
+
+  top: 3%;
+
+  width: 46%;
+  height: 92%;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #a9845e,
+      #95704e
+    );
+
+  border: 2px solid rgba(73, 49, 30, 0.18);
+}
+
+.left-door {
+  left: 3%;
+}
+
+.right-door {
+  right: 3%;
+}
+
+.shirt {
+  position: absolute;
+
+  left: 50%;
+  top: 30%;
+
+  width: 45%;
+  height: 38%;
+
+  transform: translateX(-50%);
+
+  z-index: 3;
+}
+
+.shirt-body {
+  position: absolute;
+
+  left: 15%;
+  top: 10%;
+
+  width: 70%;
+  height: 82%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f2eee5 0 45%,
+      #24221f 45% 55%,
+      #eeeae0 55%
+    );
+
+  border-radius: 4px;
+}
+
+.shirt-sleeve {
+  position: absolute;
+
+  top: 13%;
+
+  width: 27%;
+  height: 42%;
+
+  background: #292622;
+
+  border-radius: 5px;
+}
+
+.shirt-sleeve.left {
+  left: 0;
+
+  transform: rotate(18deg);
+}
+
+.shirt-sleeve.right {
+  right: 0;
+
+  transform: rotate(-18deg);
+}
+
+/* =====================================================
+   PHOTO FRAME
+===================================================== */
+
+.photo-frame {
+  position: absolute;
+
+  left: 38%;
+  top: 13%;
+
+  width: 11%;
+  height: 15%;
+
+  z-index: 5;
+
+  padding: 7px;
+
+  background: #85674a;
+
+  box-shadow:
+    0 8px 15px rgba(59, 42, 28, 0.18);
+}
+
+.frame-border {
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+
+  background: #eee7da;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8d2c6,
+      #bdb4a6
+    );
+
+  color: rgba(82, 69, 56, 0.65);
+
+  font-size: 7px;
+  letter-spacing: 0.12em;
+}
+
+/* =====================================================
+   CLOCK
+===================================================== */
+
+.clock {
+  position: absolute;
+
+  left: 18%;
+  top: 14%;
+
+  width: 10%;
+  aspect-ratio: 1;
+
+  z-index: 5;
+
+  border-radius: 50%;
+
+  background: #eee5d5;
+
+  border: 8px solid #947455;
+
+  box-shadow:
+    0 8px 15px rgba(64, 44, 28, 0.16);
+}
+
+.clock-face {
+  position: absolute;
+  inset: 8%;
+
+  border-radius: 50%;
+
+  background: #f7f1e6;
+}
+
+.clock-hand {
+  position: absolute;
+
+  left: 50%;
+  bottom: 50%;
+
+  width: 3px;
+
+  transform-origin: bottom;
+
+  background: #625346;
+
+  border-radius: 3px;
+}
+
+.clock-hand.hour {
+  height: 30%;
+
+  transform: translateX(-50%) rotate(40deg);
+}
+
+.clock-hand.minute {
+  height: 39%;
+
+  transform: translateX(-50%) rotate(125deg);
+}
+
+.clock-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #625346;
+}
+
+/* =====================================================
+   SPEAKER
+===================================================== */
+
+.speaker {
+  position: absolute;
+
+  left: 10%;
+  top: 49%;
+
+  width: 10%;
+  height: 13%;
+
+  z-index: 8;
+
+  padding: 9px;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #7d7062,
+      #5e5449
+    );
+
+  box-shadow:
+    0 8px 14px rgba(55, 39, 26, 0.18);
+}
+
+.speaker-body {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  background: #5b5147;
+
+  border-radius: 3px;
+}
+
+.speaker-circle {
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #c8bdac 0 15%,
+      #51483e 16% 40%,
+      #817466 41% 100%
+    );
+}
+
+.speaker-circle.small {
+  width: 13px;
+  height: 13px;
+}
+
+/* =====================================================
+   DRAWER
+===================================================== */
+
+.drawer {
+  position: absolute;
+
+  left: 7%;
+  bottom: 14%;
+
+  width: 19%;
+  height: 12%;
+
+  z-index: 8;
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #9d7752,
+      #795438
+    );
+
+  box-shadow:
+    0 8px 15px rgba(54, 37, 23, 0.2);
+}
+
+.drawer-handle {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 25%;
+  height: 7px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 10px;
+
+  background: #d3b58d;
+}
+
+/* =====================================================
+   RUG
+===================================================== */
+
+.rug {
+  position: absolute;
+
+  left: 28%;
+  bottom: 5%;
+
+  width: 44%;
+  height: 18%;
+
+  z-index: 3;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      #c5b29a,
+      #ad987c
+    );
+
+  box-shadow:
+    0 9px 15px rgba(60, 43, 28, 0.12),
+    inset 0 0 0 2px rgba(255,255,255,0.12);
+}
+
+/* =====================================================
    ROOM HINT
-   ========================================= */
+===================================================== */
 
 #room-hint {
   position: fixed;
 
   left: 50%;
-  bottom: 42px;
+  bottom: 30px;
 
   z-index: 100;
 
-  transform:
-    translateX(-50%)
-    translateY(12px);
-
   min-width: 180px;
-  max-width: min(420px, 80vw);
+  max-width: 80vw;
 
-  padding: 11px 20px;
+  padding: 10px 18px;
 
-  border: 1px solid rgba(238, 226, 207, 0.12);
-  border-radius: 6px;
-
-  background: rgba(35, 30, 25, 0.68);
-
-  backdrop-filter: blur(12px);
-
-  color: rgba(245, 237, 224, 0.9);
-
-  font-size: 13px;
-  line-height: 1.6;
-
-  text-align: center;
-  letter-spacing: 0.05em;
+  transform:
+    translate(-50%, 12px);
 
   opacity: 0;
-  pointer-events: none;
 
-  box-shadow:
-    0 10px 30px rgba(24, 18, 12, 0.12);
+  border-radius: 5px;
+
+  background: rgba(49, 41, 33, 0.72);
+
+  backdrop-filter: blur(10px);
+
+  color: #f3eadc;
+
+  font-size: 12px;
+
+  text-align: center;
+
+  letter-spacing: 0.05em;
+
+  pointer-events: none;
 
   transition:
     opacity 0.45s ease,
@@ -394,27 +1211,57 @@ body {
   opacity: 1;
 
   transform:
-    translateX(-50%)
-    translateY(0);
+    translate(-50%, 0);
 }
 
-/* =========================================
+/* =====================================================
+   GAME UI
+===================================================== */
+
+.game-ui {
+  position: fixed;
+
+  top: 22px;
+  right: 28px;
+
+  z-index: 100;
+
+  padding: 7px 12px;
+
+  border: 1px solid rgba(78, 61, 43, 0.16);
+
+  border-radius: 4px;
+
+  background: rgba(246, 239, 227, 0.48);
+
+  backdrop-filter: blur(8px);
+
+  color: #6d5b49;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+}
+
+/* =====================================================
    DIARY MODAL
-   ========================================= */
+===================================================== */
 
 #diary-modal {
   position: fixed;
   inset: 0;
 
-  z-index: 500;
+  z-index: 5000;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  padding: 30px;
+  padding: 25px;
 
-  background: rgba(25, 21, 17, 0.58);
+  background:
+    rgba(43, 34, 26, 0.55);
 
   backdrop-filter: blur(7px);
 
@@ -427,188 +1274,216 @@ body {
 
 #diary-modal.hidden {
   opacity: 0;
+
   visibility: hidden;
+
   pointer-events: none;
 }
 
-.diary-content {
+.modal-content {
   position: relative;
 
-  width: min(620px, 90vw);
-  max-height: 80vh;
-
-  overflow-y: auto;
-
-  padding: clamp(32px, 6vw, 58px);
-
-  border-radius: 5px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f4eddf,
-      #eee4d2
-    );
-
-  color: #4a4035;
-
-  box-shadow:
-    0 30px 80px rgba(24, 18, 12, 0.28),
-    0 8px 24px rgba(24, 18, 12, 0.12);
+  width: min(560px, 90vw);
 
   transform:
-    translateY(18px)
-    scale(0.985);
+    translateY(15px)
+    scale(0.98);
 
   transition:
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.65s cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
-#diary-modal:not(.hidden) .diary-content {
+#diary-modal:not(.hidden) .modal-content {
   transform:
     translateY(0)
     scale(1);
 }
 
-.diary-content::before {
+.paper {
+  position: relative;
+
+  padding: 52px 55px;
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5efe3,
+      #ebe1cf
+    );
+
+  color: #55483a;
+
+  box-shadow:
+    0 30px 70px rgba(45, 33, 23, 0.28);
+}
+
+.paper::before {
   content: "";
 
   position: absolute;
-  inset: 14px;
 
-  border: 1px solid rgba(103, 86, 66, 0.12);
+  inset: 15px;
+
+  border: 1px solid rgba(92, 70, 47, 0.12);
 
   pointer-events: none;
 }
 
-#close-diary {
+.paper-title {
+  margin-top: 0;
+
+  color: #776451;
+
+  font-size: 12px;
+
+  letter-spacing: 0.2em;
+}
+
+.paper-note {
+  margin-top: 35px;
+
+  color: #81705c;
+
+  font-size: 13px;
+}
+
+.close-button {
   position: absolute;
 
-  top: 18px;
-  right: 22px;
+  right: 16px;
+  top: 13px;
 
-  width: 30px;
-  height: 30px;
+  z-index: 5;
 
   border: none;
 
   background: transparent;
 
-  color: #6c5d4d;
+  color: #6f5d4c;
 
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 22px;
 
   cursor: pointer;
 
   opacity: 0.65;
 
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-#close-diary:hover {
+.close-button:hover {
   opacity: 1;
-
-  transform: rotate(3deg);
 }
 
-/* =========================================
-   HIDDEN UTILITY
-   ========================================= */
+/* =====================================================
+   OBJECT HOVER
+===================================================== */
 
-.hidden {
-  display: none !important;
-}
-
-/* =========================================
-   SOFT INTERACTION
-   ========================================= */
-
-#clock,
-#drawer,
-#wardrobe,
-#photo-frame,
-#dog-toy,
-#speaker {
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.45s ease;
-}
-
-#clock:hover,
-#drawer:hover,
-#wardrobe:hover,
-#photo-frame:hover,
-#dog-toy:hover,
-#speaker:hover {
-  transform: translateY(-2px);
-
+.window-object:hover {
   filter:
     brightness(1.06)
     drop-shadow(
-      0 0 10px rgba(255, 222, 177, 0.13)
+      0 0 16px rgba(255, 218, 168, 0.18)
     );
 }
 
-/* =========================================
-   LOGIN ANIMATION
-   ========================================= */
+.bed:hover {
+  transform: translateY(-2px);
+}
 
-@keyframes loginAppear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+.wardrobe:hover {
+  transform: translateY(-2px);
+}
+
+.photo-frame:hover {
+  transform:
+    translateY(-2px)
+    rotate(-1deg);
+}
+
+.clock:hover {
+  transform: translateY(-2px);
+}
+
+.drawer:hover {
+  transform: translateY(-2px);
+}
+
+.speaker:hover {
+  transform: translateY(-2px);
+}
+
+.dog-toy:hover {
+  transform:
+    translateY(-3px)
+    rotate(-1deg);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+  .window-object {
+    left: 50%;
+    top: 7%;
+
+    width: 42%;
+    height: 34%;
+
+    transform: translateX(-50%);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .desk {
+    left: 3%;
+    bottom: 22%;
+
+    width: 30%;
+  }
+
+  .bed {
+    left: 24%;
+    width: 53%;
+  }
+
+  .wardrobe {
+    right: 2%;
+    width: 19%;
+  }
+
+  .clock {
+    left: 7%;
+    width: 12%;
+  }
+
+  .photo-frame {
+    left: 39%;
+    width: 13%;
+  }
+
+  .game-ui {
+    top: 15px;
+    right: 15px;
   }
 }
 
-/* =========================================
+/* =====================================================
    REDUCED MOTION
-   ========================================= */
+===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
-
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 768px) {
-  #room {
-    min-height: 100vh;
-
-    background-position: center center;
-  }
-
-  #room-hint {
-    bottom: 24px;
-
-    max-width: 82vw;
-
-    font-size: 12px;
-  }
-
-  .diary-content {
-    width: 92vw;
-
-    max-height: 78vh;
-
-    padding: 38px 26px;
+    animation: none !important;
+    transition: none !important;
   }
 }
