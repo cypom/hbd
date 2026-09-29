@@ -18,23 +18,15 @@ const roomHint = document.getElementById("room-hint");
 // ========================================
 
 const gameState = {
-
-authenticated: false,
-
-windowOpened: false,
-
-diaryOpened: false,
-
-giftsFound: 0
-
+  authenticated: false,
+  windowOpened: false,
+  diaryOpened: false,
+  giftsFound: 0
 };
 
 // ========================================
 // 身分確認
 // ========================================
-
-// 第一版暫時使用這個測試密碼。
-// 之後可以換成你朋友真正的密碼。
 
 const PASSWORD = "0530";
 
@@ -79,94 +71,55 @@ passwordInput.addEventListener("keydown", (event) => {
 let hintTimer;
 
 function showHint(message) {
+  roomHint.textContent = message;
 
-roomHint.textContent = message;
+  roomHint.classList.add("show");
 
-roomHint.classList.add("show");
+  clearTimeout(hintTimer);
 
-clearTimeout(hintTimer);
-
-hintTimer = setTimeout(() => {
-
-```
-roomHint.classList.remove("show");
-```
-
-}, 2800);
-
+  hintTimer = setTimeout(() => {
+    roomHint.classList.remove("show");
+  }, 2800);
 }
 
 // ========================================
 // 窗戶
 // ========================================
 
-windowObject.addEventListener(
-"click",
-() => {
+windowObject.addEventListener("click", () => {
+  if (gameState.windowOpened) {
+    showHint("陽光已經進來了。");
+    return;
+  }
 
-```
-if (gameState.windowOpened) {
+  gameState.windowOpened = true;
 
-  showHint("陽光已經進來了。");
+  room.classList.add("window-open");
 
-  return;
-
-}
-
-gameState.windowOpened = true;
-
-room.classList.add("window-open");
-
-showHint("窗簾慢慢向兩側退開。");
-```
-
-}
-);
+  showHint("窗簾慢慢向兩側退開。");
+});
 
 // ========================================
 // 日記本
 // ========================================
 
-diary.addEventListener(
-"click",
-() => {
+diary.addEventListener("click", () => {
+  gameState.diaryOpened = true;
 
-```
-gameState.diaryOpened = true;
+  diaryModal.classList.remove("hidden");
+});
 
-diaryModal.classList.remove("hidden");
-```
-
-}
-);
-
-closeDiary.addEventListener(
-"click",
-() => {
-
-```
-diaryModal.classList.add("hidden");
-```
-
-}
-);
+closeDiary.addEventListener("click", () => {
+  diaryModal.classList.add("hidden");
+});
 
 // 點擊背景也可以關閉日記
 
-diaryModal.addEventListener(
-"click",
-(event) => {
-
-```
-if (event.target === diaryModal) {
-
-  diaryModal.classList.add("hidden");
-
-}
-```
-
-}
-);
+diaryModal.addEventListener("click", (event) => {
+  if (event.target === diaryModal) {
+    diaryModal.classList.add("hidden");
+  }
+});
 
 // ========================================
 // 其他物件
@@ -174,69 +127,43 @@ if (event.target === diaryModal) {
 // ========================================
 
 document
-.getElementById("clock")
-.addEventListener("click", () => {
-
-```
-showHint("指針安靜地走著。");
-```
-
-});
+  .getElementById("clock")
+  .addEventListener("click", () => {
+    showHint("指針安靜地走著。");
+  });
 
 document
-.getElementById("drawer")
-.addEventListener("click", () => {
-
-```
-showHint("抽屜現在還打不開。");
-```
-
-});
+  .getElementById("drawer")
+  .addEventListener("click", () => {
+    showHint("抽屜現在還打不開。");
+  });
 
 document
-.getElementById("wardrobe")
-.addEventListener("click", () => {
-
-```
-showHint("衣櫃裡藏著一件黑白襯衫。");
-```
-
-});
+  .getElementById("wardrobe")
+  .addEventListener("click", () => {
+    showHint("衣櫃裡藏著一件黑白襯衫。");
+  });
 
 document
-.getElementById("photo-frame")
-.addEventListener("click", () => {
-
-```
-showHint("照片還沒有被喚醒。");
-```
-
-});
+  .getElementById("photo-frame")
+  .addEventListener("click", () => {
+    showHint("照片還沒有被喚醒。");
+  });
 
 document
-.getElementById("dog-toy")
-.addEventListener("click", () => {
-
-```
-showHint("小狗玩偶安靜地看著你。");
-```
-
-});
+  .getElementById("dog-toy")
+  .addEventListener("click", () => {
+    showHint("小狗玩偶安靜地看著你。");
+  });
 
 document
-.getElementById("speaker")
-.addEventListener("click", () => {
-
-```
-showHint("音響沒有播放任何聲音。");
-```
-
-});
+  .getElementById("speaker")
+  .addEventListener("click", () => {
+    showHint("音響沒有播放任何聲音。");
+  });
 
 // ========================================
 // 初始提示
 // ========================================
 
-console.log(
-"Birthday Adventure initialized."
-);
+console.log("Birthday Adventure initialized.");
