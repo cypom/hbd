@@ -13,10 +13,6 @@ const closeDiary = document.getElementById("close-diary");
 
 const roomHint = document.getElementById("room-hint");
 
-// ========================================
-// 遊戲狀態
-// ========================================
-
 const gameState = {
   authenticated: false,
   windowOpened: false,
@@ -24,11 +20,13 @@ const gameState = {
   giftsFound: 0
 };
 
-// ========================================
-// 身分確認
-// ========================================
-
 const PASSWORD = "0530";
+
+let hintTimer;
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 function enterRoom() {
   const enteredPassword = passwordInput.value.trim();
@@ -36,41 +34,86 @@ function enterRoom() {
   console.log("輸入的密碼：", enteredPassword);
 
   if (enteredPassword === PASSWORD) {
+
     gameState.authenticated = true;
 
     loginMessage.textContent = "ACCESS GRANTED";
-    loginMessage.style.color = "#b9c6ad";
+    loginMessage.style.color = "#d9c49f";
+
+    /*
+      第一階段：
+      等待 ACCESS GRANTED 出現
+    */
 
     setTimeout(() => {
+
+      /*
+        第二階段：
+        登入畫面淡出
+      */
+
       loginScreen.classList.add("hidden");
+
+      /*
+        第三階段：
+        顯示房間
+      */
+
       room.classList.remove("hidden");
 
-      showHint("房間很安靜。");
+      /*
+        確保房間一開始還是關著窗簾
+      */
+
+      room.classList.remove("window-open");
+
+      /*
+        等待房間淡入
+      */
+
+      setTimeout(() => {
+
+        /*
+          第四階段：
+          窗簾開始打開
+        */
+
+        room.classList.add("window-open");
+
+        gameState.windowOpened = true;
+
+      }, 900);
+
     }, 900);
 
   } else {
+
     loginMessage.textContent = "ACCESS DENIED";
-    loginMessage.style.color = "#a98b82";
+
+    loginMessage.style.color = "#b98f7f";
 
     passwordInput.value = "";
+
+    passwordInput.focus();
   }
 }
 
 enterButton.addEventListener("click", enterRoom);
 
 passwordInput.addEventListener("keydown", (event) => {
+
   if (event.key === "Enter") {
     enterRoom();
   }
+
 });
 
-// ========================================
-// 房間提示
-// ========================================
-
-let hintTimer;
+/* =========================================================
+   HINT
+========================================================= */
 
 function showHint(message) {
+
   roomHint.textContent = message;
 
   roomHint.classList.add("show");
@@ -78,17 +121,26 @@ function showHint(message) {
   clearTimeout(hintTimer);
 
   hintTimer = setTimeout(() => {
+
     roomHint.classList.remove("show");
+
   }, 2800);
 }
 
-// ========================================
-// 窗戶
-// ========================================
+/* =========================================================
+   WINDOW
+========================================================= */
 
 windowObject.addEventListener("click", () => {
+
+  if (!gameState.authenticated) {
+    return;
+  }
+
   if (gameState.windowOpened) {
-    showHint("陽光已經進來了。");
+
+    showHint("窗外的陽光已經進來了。");
+
     return;
   }
 
@@ -97,73 +149,103 @@ windowObject.addEventListener("click", () => {
   room.classList.add("window-open");
 
   showHint("窗簾慢慢向兩側退開。");
+
 });
 
-// ========================================
-// 日記本
-// ========================================
+/* =========================================================
+   DIARY
+========================================================= */
 
 diary.addEventListener("click", () => {
+
   gameState.diaryOpened = true;
 
   diaryModal.classList.remove("hidden");
+
 });
+
+/* =========================================================
+   CLOSE DIARY
+========================================================= */
 
 closeDiary.addEventListener("click", () => {
-  diaryModal.classList.add("hidden");
-});
 
-// 點擊背景也可以關閉日記
+  diaryModal.classList.add("hidden");
+
+});
 
 diaryModal.addEventListener("click", (event) => {
+
   if (event.target === diaryModal) {
+
     diaryModal.classList.add("hidden");
+
   }
+
 });
 
-// ========================================
-// 其他物件
-// 第一版先只有提示
-// ========================================
+/* =========================================================
+   CLOCK
+========================================================= */
 
-document
-  .getElementById("clock")
-  .addEventListener("click", () => {
-    showHint("指針安靜地走著。");
-  });
+document.getElementById("clock").addEventListener("click", () => {
 
-document
-  .getElementById("drawer")
-  .addEventListener("click", () => {
-    showHint("抽屜現在還打不開。");
-  });
+  showHint("指針安靜地走著。");
 
-document
-  .getElementById("wardrobe")
-  .addEventListener("click", () => {
-    showHint("衣櫃裡藏著一件黑白襯衫。");
-  });
+});
 
-document
-  .getElementById("photo-frame")
-  .addEventListener("click", () => {
-    showHint("照片還沒有被喚醒。");
-  });
+/* =========================================================
+   DRAWER
+========================================================= */
 
-document
-  .getElementById("dog-toy")
-  .addEventListener("click", () => {
-    showHint("小狗玩偶安靜地看著你。");
-  });
+document.getElementById("drawer").addEventListener("click", () => {
 
-document
-  .getElementById("speaker")
-  .addEventListener("click", () => {
-    showHint("音響沒有播放任何聲音。");
-  });
+  showHint("抽屜現在還打不開。");
 
-// ========================================
-// 初始提示
-// ========================================
+});
+
+/* =========================================================
+   WARDROBE
+========================================================= */
+
+document.getElementById("wardrobe").addEventListener("click", () => {
+
+  showHint("衣櫃裡掛著一件黑白襯衫。");
+
+});
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+document.getElementById("photo-frame").addEventListener("click", () => {
+
+  showHint("照片還沒有被喚醒。");
+
+});
+
+/* =========================================================
+   DOG
+========================================================= */
+
+document.getElementById("dog-toy").addEventListener("click", () => {
+
+  showHint("小狗玩偶安靜地看著你。");
+
+});
+
+/* =========================================================
+   SPEAKER
+========================================================= */
+
+document.getElementById("speaker").addEventListener("click", () => {
+
+  showHint("音響沒有播放任何聲音。");
+
+});
+
+/* =========================================================
+   START
+========================================================= */
 
 console.log("Birthday Adventure initialized.");
